@@ -1,6 +1,23 @@
 <?php 
-  if($_POST) {
-    //DB connection
+  if(isset($_POST)) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+
+  }
+
+  if($name && $email && $password) {
+    $host = 'locahost';
+    $user = 'root';
+    $contraseña = '';
+    $dbName = '';
+
+    try {
+      $conexion = new PDO("mysql:host=$host;dbname=");
+    }catch(PDOException $error) {
+  
+    }
   }
 ?>
 
@@ -20,23 +37,23 @@
   </head>
   <body>
     <div class="container mt-3">
-      <form action="/sign-up.php" method="POST">
+      <form action="./sign-up.php" method="post">
         <h1 class="text-center">Davdev Gallery with PHP :)</h1>
         <h2>Sign In</h2>
         <div class="mb-3">
           <label for="name" class="form-label">Your name</label>
-          <input type="text" class="form-control" id="name" placeholder="Jonathan García">
+          <input type="text" name="name" class="form-control" id="name" placeholder="Jonathan García" value=<?php echo $name; ?> >
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value=<?php echo $email; ?> >
         </div>
         <label for="inputPassword5" class="form-label">Password</label>
-        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+        <input type="password" name="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
         <div id="passwordHelpBlock" class="form-text mb-3">
           Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
         </div>
-        <button type="button" class="btn btn-primary">Sign In</button>
+        <button class="btn btn-primary">Sign In</button>
         <a href="./sign-in.php" class="btn btn-dark">Already have an account? Sign in!</a>
       </div>
       </form>
